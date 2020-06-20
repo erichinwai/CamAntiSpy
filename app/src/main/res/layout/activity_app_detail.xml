@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppDetail">
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:text="CamAntiSpy" />
+
+    <ImageView
+        android:id="@+id/app_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:paddingEnd="16dp"
+        android:paddingStart="8dp"
+        tools:src="@mipmap/ic_launcher"
+        android:layout_below="@id/app_name"/>
+
+    <TextView
+        android:id="@+id/package_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8sp"
+        android:textSize="20sp"
+        android:text="Package Name: com.example.camantispy"
+        android:layout_below="@id/app_img"/>
+
+    <TextView
+        android:id="@+id/last_access_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/package_name"
+        android:paddingBottom="8sp"
+        android:textSize="20sp"
+        tools:text="Last Access Time: yesterday at 18.54" />
+    <TextView
+        android:id="@+id/first_install_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_access_time"
+        android:paddingBottom="8sp"
+        android:textSize="20sp"
+        tools:text="First Install Time: yesterday at 18.54" />
+    <ListView
+        android:id="@+id/permission_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/first_install_time"
+        android:paddingBottom="8sp"
+        android:textSize="20sp"
+        tools:text="Permissions : " />
+
+
+
+</RelativeLayout>

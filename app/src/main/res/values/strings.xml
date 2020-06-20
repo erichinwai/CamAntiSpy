@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CamAntiSpy</string>
+    <string name="permission_message">You need to grant access to usage stats\n GRANT PERMISSION</string>
+    <string name="last_time_used_never">Last time used: never</string>
+    <string name="last_time_used">Last time used: %1$s</string>
+
+    <string name="package_name">Package Name: %1$s</string>
+    <string name="last_acc_time">Last Access Time: %1$s</string>
+    <string name="first_time_used">First Install Time: %1$s</string>
+    <string name="txt_uninstall_label">Malware Detected! This application is recommended for uninstallation. Do you want to uninstall?</string>
+
+</resources>
