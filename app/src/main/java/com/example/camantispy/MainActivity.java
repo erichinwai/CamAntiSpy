@@ -197,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                                         permission_check[i].equals("android.permission.WRITE_APN_SETTINGS")||
                                         permission_check[i].equals("android.permission.KILL_BACKGROUND_PROCESSES")||
                                         permission_check[i].equals("android.permission.AUTHENTICATE_ACCOUNTS")
-
                                 ){
                                     num_of_pm+=1;
                                     weight += 4;
@@ -231,17 +230,17 @@ public class MainActivity extends AppCompatActivity {
                                     no_neutral++;
                                 }
                             }
-                            score = num_of_pm*weight / num_of_pm*weight + no_neutral;
+                            score = weight / weight + no_neutral;
                         }
                         Log.d("APPSCORE", "SCORE:"+resolInfo.activityInfo.packageName + " = " + score);
 
                         //assume apps with more than 0.5 score are malware
                         if (score >= 0.5) {
                             if(resolInfo.activityInfo.packageName.equals("com.example.camantispy")  || resolInfo.activityInfo.packageName.contains("com.android.") || resolInfo.activityInfo.packageName.contains("com.vphone.")|| resolInfo.activityInfo.packageName.contains("com.google.")){
-                                Log.d("malwareResult", resolInfo.activityInfo.packageName);
+                                Log.d("malResult", resolInfo.activityInfo.packageName+ " = " + score);
                             }else{
                                 malware_app.add(resolInfo.activityInfo.packageName);
-                                Log.d("malwarescanResult", "score:  "+resolInfo.activityInfo.packageName);
+                                Log.d("malwarescanResult", "score:  "+resolInfo.activityInfo.packageName+ " = " + score);
                                 Drawable icon = getPackageManager().getApplicationIcon(resolInfo.activityInfo.packageName);
                                 malware_icon.add(icon);
                             }
