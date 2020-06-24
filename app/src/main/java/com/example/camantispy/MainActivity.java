@@ -147,10 +147,9 @@ public class MainActivity extends AppCompatActivity {
                     ResolveInfo resolInfo = (ResolveInfo) app;
                     PackageInfo packInfo = null;
 
-                    float score = 0;
-                    float weight = 0;
+                    float pm_score = 0;
+                    float weight_score = 0;
                     float no_neutral = 0;
-                    int num_of_pm=0;
                     try {
                         //get apps permission
                         packInfo = getPackageManager().getPackageInfo(resolInfo.activityInfo.packageName, PackageManager.GET_PERMISSIONS);
@@ -166,8 +165,7 @@ public class MainActivity extends AppCompatActivity {
                                         permission_check[i].equals("android.permission.CALL_PHONE")||
                                         permission_check[i].equals("android.permission.WIFI_MULTICAST_STATE")
                                 ) {
-                                    num_of_pm+=1;
-                                    weight += 2;
+                                    weight_score += 2;
 
                                 } else if (
                                         permission_check[i].equals("android.permission.BLUETOOTH")||
@@ -183,8 +181,7 @@ public class MainActivity extends AppCompatActivity {
                                         permission_check[i].equals("android.permission.SYSTEM_ALERT_WINDOW")||
                                                 permission_check[i].equals("android.permission.CLEAR_APP_CACHE")
                                 ) {
-                                    num_of_pm+=1;
-                                    weight += 3;
+                                    weight_score += 3;
 
                                 } else if (permission_check[i].equals("android.permission.READ_HISTORY_BOOKMARKS") ||
                                         permission_check[i].equals("android.permission.READ_CALENDAR")||
@@ -198,8 +195,7 @@ public class MainActivity extends AppCompatActivity {
                                         permission_check[i].equals("android.permission.KILL_BACKGROUND_PROCESSES")||
                                         permission_check[i].equals("android.permission.AUTHENTICATE_ACCOUNTS")
                                 ){
-                                    num_of_pm+=1;
-                                    weight += 4;
+                                    weight_score += 4;
                                 } else if (permission_check[i].equals("android.permission.SEND_SMS") ||
                                         permission_check[i].equals("android.permission.RECEIVE_SMS") ||
                                         permission_check[i].equals("android.permission.WRITE_SMS")||
@@ -208,8 +204,7 @@ public class MainActivity extends AppCompatActivity {
                                         permission_check[i].equals("android.permission.READ_CONTACTS")
 
                                 ) {
-                                    num_of_pm+=1;
-                                    weight += 5;
+                                    weight_score += 5;
                                 } else if (permission_check[i].equals("android.permission.WRITE_EXTERNAL_STORAGE")||
                                         permission_check[i].equals("android.permission.ACCESS_BACKGROUND_LOCATION") ||
                                         permission_check[i].equals("android.permission.PROCESS_OUTGOING_CALLS") ||
@@ -224,23 +219,22 @@ public class MainActivity extends AppCompatActivity {
                                         permission_check[i].equals("android.permission.INSTALL_PACKAGES")
 
                                 ) {
-                                    num_of_pm+=1;
-                                    weight += 6;
+                                    weight_score += 6;
                                 } else {
                                     no_neutral++;
                                 }
                             }
-                            score = weight / weight + no_neutral;
+                            pm_score = weight_score / weight_score + no_neutral;
                         }
-                        Log.d("APPSCORE", "SCORE:"+resolInfo.activityInfo.packageName + " = " + score);
+                        Log.d("APPSCORE", "SCORE:"+resolInfo.activityInfo.packageName + " = " + pm_score);
 
-                        //assume apps with more than 0.5 score are malware
-                        if (score >= 0.5) {
+                        //assume apps with more than 0.5 pm_score are malware
+                        if (pm_score >= 0.5) {
                             if(resolInfo.activityInfo.packageName.equals("com.example.camantispy")  || resolInfo.activityInfo.packageName.contains("com.android.") || resolInfo.activityInfo.packageName.contains("com.vphone.")|| resolInfo.activityInfo.packageName.contains("com.google.")){
-                                Log.d("malResult", resolInfo.activityInfo.packageName+ " = " + score);
+                                Log.d("malResult", resolInfo.activityInfo.packageName+ " = " + pm_score);
                             }else{
                                 malware_app.add(resolInfo.activityInfo.packageName);
-                                Log.d("malwarescanResult", "score:  "+resolInfo.activityInfo.packageName+ " = " + score);
+                                Log.d("malwarescanResult", "pm_score:  "+resolInfo.activityInfo.packageName+ " = " + weight_score);
                                 Drawable icon = getPackageManager().getApplicationIcon(resolInfo.activityInfo.packageName);
                                 malware_icon.add(icon);
                             }
